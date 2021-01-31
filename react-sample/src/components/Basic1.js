@@ -9,7 +9,7 @@ const Basic1 = (props) => {
 
   return (
     <div>
-      <button onClick={()=>{setCount(count+1)}}>Click{count}</button>
+      <button onClick={()=>{setCount(count=>count+1)}}>Click{count}</button>
       
       <h1>Hello {props.name}</h1>
     </div>
