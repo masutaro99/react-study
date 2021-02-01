@@ -2,8 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 // import Basic1 from "./components/Basic1"
 import Basic2 from "./components/Basic2"
-import BasicUseEffect from "./components/BasicUseEffect"
+// import BasicUseEffect from "./components/BasicUseEffect"
 import TimerContainer from "./components/TimerContainer"
+import ApiFetch from './components/ApiFetch';
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         {/* <Basic1/> */}
         <Basic2/>
-        <BasicUseEffect/>
+        {/* <BasicUseEffect/> */}
         <TimerContainer/>
+        <ApiFetch/>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
