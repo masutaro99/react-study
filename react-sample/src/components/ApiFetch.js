@@ -3,25 +3,37 @@ import axios from "axios"
 
 const ApiFetch = () => {
   const [posts, setPosts] = useState([])
-  useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/posts")
-    .then(res => {
-      setPosts(res.data)
-    })
+  const [id, setId] = useState(1)
+  const [clicked, setClicked] = useState(false)
+  const handlerClicked = () => {
+    setClicked(!clicked)
+  }
+  
 
-    // fetch("https://jsonplaceholder.typicode.com/posts", {method: 'Get'})
-    // .then(res => res.json())
-    // .then(data => {
-    //   setPosts(data)
+  useEffect(() => {
+    // axios.get(`https://jsonplaceholder.typicode.com/posts/{$id}`)
+    // .then(res => {
+    //   setPosts(res.data)
     // })
-  },[])
+
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {method: 'Get'})
+    .then(res => res.json())
+    .then(data => {
+      setPosts(data)
+    })
+  },[clicked])
   return (
     <div>
-      <ul>
+      {/* <ul>
         {
           posts.map(post => <li key={post.id}>{post.title}</li>)
         }  
-      </ul> 
+      </ul>  */}
+      <input type="text" value={id} onChange={evt=>setId(evt.target.value)}/>
+      <br />
+      <button type="button" onClick={handlerClicked}>Get post</button>
+      <br />
+      {posts.title}
     </div>
   )
 }
