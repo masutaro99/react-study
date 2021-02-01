@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Basic1 from "./components/Basic1"
 import Basic2 from "./components/Basic2"
+import BasicUseEffect from "./components/BasicUseEffect"
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <Basic1/>
         <Basic2/>
+        <BasicUseEffect/>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
