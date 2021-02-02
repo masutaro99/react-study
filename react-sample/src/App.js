@@ -7,6 +7,7 @@ import TimerContainer from "./components/TimerContainer"
 import ApiFetch from './components/ApiFetch';
 import AppContext from "./contexts/AppContext";
 import Parent from "./components/Parent"
+import BasicReducer from "./components/BasicReducer"
 
 function App() {
   return (
@@ -20,17 +21,7 @@ function App() {
           <TimerContainer/>
           <ApiFetch/>
           <Parent />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <BasicReducer />
         </header>
       </div>
     </AppContext.Provider>
