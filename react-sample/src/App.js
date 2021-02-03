@@ -8,6 +8,7 @@ import ApiFetch from './components/ApiFetch';
 import AppContext from "./contexts/AppContext";
 import Parent from "./components/Parent"
 // import BasicReducer from "./components/BasicReducer"
+import Memo from "./components/Memo"
 
 import {useReducer} from 'react'
 
@@ -39,7 +40,7 @@ function App() {
           <ApiFetch/>
           <Parent />
           Count {count}
-          {/* <BasicReducer /> */}
+          <Memo />
         </header>
       </div>
     </AppContext.Provider>
