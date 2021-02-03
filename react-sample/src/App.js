@@ -1,16 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
 // import Basic1 from "./components/Basic1"
-import Basic2 from "./components/Basic2"
+// import Basic2 from "./components/Basic2"
 // import BasicUseEffect from "./components/BasicUseEffect"
 import TimerContainer from "./components/TimerContainer"
 import ApiFetch from './components/ApiFetch';
 import AppContext from "./contexts/AppContext";
 import Parent from "./components/Parent"
 // import BasicReducer from "./components/BasicReducer"
-import Memo from "./components/Memo"
+// import Memo from "./components/Memo"
+import CountDisplay from "./components/CountDisplay"
+import CountClick from "./components/CountClick"
 
-import {useReducer} from 'react'
+import {useReducer, useState, useCallback} from 'react'
 
 const initialState = 0
 const reducer = (currentState, action) => {
@@ -28,19 +30,34 @@ const reducer = (currentState, action) => {
 
 function App() {
   const [count, dispatch] = useReducer(reducer, initialState)
+
+  const [count1, setCount1] = useState(0)
+  const [count2, setCount2] = useState(0)
+
+  const AddCount1 = useCallback(() => {
+    setCount1(prevCount1 => prevCount1 + 1)
+  },[count1])
+  const AddCount2 = useCallback(() => {
+    setCount2(prevCount2 => prevCount2 + 1)
+  },[count2])
+
   return (
     <AppContext.Provider value={{countProvided: count, dispatchProvided: dispatch}}>
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           {/* <Basic1/> */}
-          <Basic2/>
+          {/* <Basic2/> */}
           {/* <BasicUseEffect/> */}
           <TimerContainer/>
           <ApiFetch/>
           <Parent />
           Count {count}
-          <Memo />
+          {/* <Memo /> */}
+          <CountDisplay name="count1" count={count1}/>
+          <CountClick handleClick={AddCount1}>AddCount1</CountClick>
+          <CountDisplay name="count2" count={count2}/>
+          <CountClick handleClick={AddCount2}>AddCount2</CountClick>
         </header>
       </div>
     </AppContext.Provider>
