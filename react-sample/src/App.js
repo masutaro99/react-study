@@ -9,10 +9,14 @@ import AppContext from "./contexts/AppContext";
 import Parent from "./components/Parent"
 // import BasicReducer from "./components/BasicReducer"
 // import Memo from "./components/Memo"
-import CountDisplay from "./components/CountDisplay"
-import CountClick from "./components/CountClick"
+// import CountDisplay from "./components/CountDisplay"
+// import CountClick from "./components/CountClick"
 
 import {useReducer, useState, useCallback} from 'react'
+
+import rootReducer from "./reducers/index"
+import {SELL_MEAT, SELL_VEGETABLE} from "./reducers/actionTypes"
+import reducerVegetable from './reducers/reducerVegetable';
 
 const initialState = 0
 const reducer = (currentState, action) => {
@@ -34,12 +38,18 @@ function App() {
   const [count1, setCount1] = useState(0)
   const [count2, setCount2] = useState(0)
 
-  const AddCount1 = useCallback(() => {
-    setCount1(prevCount1 => prevCount1 + 1)
-  },[count1])
-  const AddCount2 = useCallback(() => {
-    setCount2(prevCount2 => prevCount2 + 1)
-  },[count2])
+  // const AddCount1 = useCallback(() => {
+  //   setCount1(prevCount1 => prevCount1 + 1)
+  // },[count1])
+  // const AddCount2 = useCallback(() => {
+  //   setCount2(prevCount2 => prevCount2 + 1)
+  // },[count2])
+
+  const initialState_for_combine = {
+    reducerMeat: {numOfMeat:30},
+    reducerVegetable: {numOfVegetable:25}
+  }
+  const [state, dispatch2] = useReducer(rootReducer, initialState_for_combine)
 
   return (
     <AppContext.Provider value={{countProvided: count, dispatchProvided: dispatch}}>
@@ -54,10 +64,16 @@ function App() {
           <Parent />
           Count {count}
           {/* <Memo /> */}
-          <CountDisplay name="count1" count={count1}/>
+          {/* <CountDisplay name="count1" count={count1}/>
           <CountClick handleClick={AddCount1}>AddCount1</CountClick>
           <CountDisplay name="count2" count={count2}/>
-          <CountClick handleClick={AddCount2}>AddCount2</CountClick>
+          <CountClick handleClick={AddCount2}>AddCount2</CountClick> */}
+          <br/>------------------------------------------------
+          <button onClick={()=>dispatch2({type: SELL_MEAT})}>SELL maet</button>
+          Today's Meat: {state.reducerMeat.numOfMeat}
+          <button onClick={()=>dispatch2({type: SELL_VEGETABLE})}>SELL vegetable</button>
+          Today's Vegetable: {state.reducerVegetable.numOfVegetable}
+
         </header>
       </div>
     </AppContext.Provider>
